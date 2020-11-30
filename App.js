@@ -10,7 +10,6 @@ export default function App() {
   const [todos, setTodos] = useState([]);
   const [todoId, setTodoId] = useState(null);
   const removeTodo = (id) => {
-    console.log('idapp', id);
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
   const addTodo = (title) => {
@@ -23,9 +22,12 @@ export default function App() {
     ]);
   };
 
-  let content = <MainScreen todos={todos} addTodo={addTodo} removeTodo={removeTodo} />;
+  let content = (
+    <MainScreen openTodo={setTodoId} todos={todos} addTodo={addTodo} removeTodo={removeTodo} />
+  );
   if (todoId) {
-    content = <TodoScreen />;
+    const selecetedTodo = todos.find((todo) => todo.id === todoId);
+    content = <TodoScreen goBack={() => setTodoId(null)} todo={selecetedTodo} />;
   }
 
   return (
