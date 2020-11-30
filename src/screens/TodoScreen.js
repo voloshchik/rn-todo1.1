@@ -5,9 +5,24 @@ export const TodoScreen = ({ goBack, todo }) => {
   return (
     <View>
       <Text>{todo.title}</Text>
-      <Button title='Назад' onPress={goBack} />
+      <View style={styles.bottons}>
+        <View style={styles.botton}>
+          <Button title='Назад' color='#757575' onPress={goBack} />
+        </View>
+        <View style={styles.botton}>
+          <Button title='Удалить' color='#e53935' />
+        </View>
+      </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  bottons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  botton: {
+    width: '40%',
+  },
+});

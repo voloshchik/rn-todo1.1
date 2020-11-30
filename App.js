@@ -7,8 +7,13 @@ import { MainScreen } from './src/screens/MainScreen';
 import { TodoScreen } from './src/screens/TodoScreen';
 
 export default function App() {
-  const [todos, setTodos] = useState([]);
-  const [todoId, setTodoId] = useState(null);
+  const [todos, setTodos] = useState([
+    {
+      id: '1',
+      title: 'Выучить React Native',
+    },
+  ]);
+  const [todoId, setTodoId] = useState('1');
   const removeTodo = (id) => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
