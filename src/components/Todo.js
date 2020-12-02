@@ -8,7 +8,7 @@ export const Todo = ({ todo, onRemove, onOpen }) => {
   return (
     <TouchableOpacity onLongPress={longPressHandler} onPress={() => onOpen(todo.id)}>
       <View style={styles.todo}>
-        <Text>{todo.title}</Text>
+        <Text style={styles.title}>{todo.title}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -23,5 +23,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 15,
     marginBottom: 10,
+  },
+  title: {
+    fontFamily: 'roboto-bold',
   },
 });

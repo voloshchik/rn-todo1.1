@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Alert } from 'react-native';
+import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { Navbar } from './src/components/Navbar';
 
@@ -14,6 +15,7 @@ async function loadApplication() {
 }
 
 export default function App() {
+  const [isReady, setIsReady] = useState(false);
   const [todos, setTodos] = useState([
     {
       id: '1',
@@ -22,6 +24,15 @@ export default function App() {
   ]);
   const [todoId, setTodoId] = useState('1');
 
+  if (!isReady) {
+    return (
+      <AppLoading
+        startAsync={loadApplication}
+        onError={(err) => console.log(err)}
+        onFinish={() => setIsReady(true)}
+      />
+    );
+  }
   const updateTodo = (id, title) => {
     setTodos((old) =>
       old.map((todo) => {
