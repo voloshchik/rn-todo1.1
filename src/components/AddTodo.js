@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, Button, StyleSheet, TextInput, View } from 'react-native';
-
+import { AntDesign } from '@expo/vector-icons';
 export const AddTodo = ({ onSubmit }) => {
   const [value, setValue] = useState('');
   const pressHandler = () => {
@@ -20,7 +20,9 @@ export const AddTodo = ({ onSubmit }) => {
         placeholder='введите назавание дела...'
         autoCorrect={false}
       />
-      <Button title='Добавить' onPress={pressHandler} />
+      <AntDesign.Button name='pluscircleo' onPress={pressHandler}>
+        Добавить
+      </AntDesign.Button>
     </View>
   );
 };
