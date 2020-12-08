@@ -1,15 +1,14 @@
-import { CHANGE_SREEN } from '../types';
+import { CHANGE_SCREEN } from '../types';
 
 const handlers = {
-  [CHANGE_SREEN]: (state, { payload }) => ({
-    ...state,
-    state: payload.id,
-  }),
+  [CHANGE_SCREEN]: (state, payload) => {
+    return payload;
+  },
 
   DEFAULT: (state) => state,
 };
 
 export const screeReducer = (state, action) => {
   const handler = handlers[action.type] || handlers.DEFAULT;
-  handler(state, action);
+  return handler(state, action.payload);
 };
