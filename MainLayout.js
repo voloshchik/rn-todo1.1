@@ -1,28 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Navbar } from './src/components/Navbar';
 import { THEME } from './theme';
 import { TodoScreen } from './src/screens/TodoScreen';
 import { MainScreen } from './src/screens/MainScreen';
-import { TodoContext } from './src/context/todo/todoContext';
 import { ScreenContext } from './src/context/screen/screenContext';
 
 export const MainLayout = () => {
-  const { todos, addTodo, removeTodo, updateTodo } = useContext(TodoContext);
-  const { todoId, changeScreen } = useContext(ScreenContext);
-
-  // const [todos, setTodos] = useState([]);
-  // const [todoId, setTodoId] = useState('');
-  // const updateTodo = (id, title) => {
-  //   setTodos((old) =>
-  //     old.map((todo) => {
-  //       if (todo.id === id) {
-  //         todo.title = title;
-  //       }
-  //       return todo;
-  //     })
-  //   );
-  // };
+  const { todoId } = useContext(ScreenContext);
 
   // const removeTodo = (id) => {
   //   const todo = todos.find((todo) => todo.id === id);
@@ -47,35 +32,15 @@ export const MainLayout = () => {
   //   );
   // };
 
-  // const addTodo = (title) => {
-  //   setTodos((prev) => [
-  //     ...prev,
-  //     {
-  //       id: Date.now().toString(),
-  //       title,
-  //     },
-  //   ]);
-  // };
-
-  let content = (
-    <MainScreen openTodo={changeScreen} todos={todos} addTodo={addTodo} removeTodo={removeTodo} />
-  );
+  let content = <MainScreen />;
   if (todoId) {
-    const selecetedTodo = todos.find((todo) => todo.id === todoId);
-    content = (
-      <TodoScreen
-        onSave={updateTodo}
-        onRemove={removeTodo}
-        goBack={() => changeScreen(null)}
-        todo={selecetedTodo}
-      />
-    );
+    content = <TodoScreen />;
   }
 
   return (
     <View>
       <Navbar title='Todo App' />
-      <View style={styles.container}>{content}</View>
+      <View style={styles.container}>{todoId ? <TodoScreen /> : <MainScreen />}</View>
     </View>
   );
 };

@@ -9,10 +9,10 @@ export const TodoState = ({ children }) => {
   const { changeScreen } = useContext(ScreenContext);
   const initialState = {
     todos: [
-      {
-        id: '1',
-        title: 'Выучить React Native',
-      },
+      // {
+      //   id: '1',
+      //   title: 'Выучить React Native',
+      // },
     ],
   };
   const [state, dispatch] = useReducer(todoReducer, initialState);
